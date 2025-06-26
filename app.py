@@ -54,7 +54,18 @@ if api_key:
         splits = text_splitter.split_documents(documents)
 
 
-        vectorstoredb = Chroma.from_documents(documents=splits, embedding=embeddings)
+        #vectorstoredb = Chroma.from_documents(documents=splits, embedding=embeddings)
+        from chromadb.config import Settings
+
+        vectorstoredb = Chroma.from_documents(
+            documents=splits,
+            embedding=embeddings,
+            client_settings=Settings(
+                chroma_db_impl="duckdb+parquet",
+                persist_directory="./chroma_db"
+            )
+        )
+
         retriever = vectorstoredb.as_retriever()
 
         contextualize_q_system_prompt = (
