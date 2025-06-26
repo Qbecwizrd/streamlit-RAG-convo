@@ -6,7 +6,14 @@ langchain-chroma
 langchain-core
 langchain-huggingface
 langchain-groq
-chromadb
+chromadb==0.4.24
 huggingface_hub
 sentence-transformers
 pypdf
+
+# Add these to fix protobuf-related issues
+protobuf==3.20.*
+opentelemetry-api==1.22.0
+opentelemetry-sdk==1.22.0
+opentelemetry-exporter-otlp==1.22.0
+
